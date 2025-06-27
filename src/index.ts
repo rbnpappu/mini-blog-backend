@@ -20,7 +20,7 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = ['https://mini-blog-frontend-dvnj.vercel.app/', 'http://localhost:3000', 'https://miniblogfrontend.vercel.app'];
+const allowedOrigins = ['https://mini-blog-frontend-dvnj.vercel.app', 'http://localhost:3000', 'https://miniblogfrontend.vercel.app'];
     app.use(cors({
       origin: function (origin, callback) {
         if (!origin) return callback(null, true);
