@@ -13,28 +13,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// ✅ Allowed production frontends (no trailing slashes!)
+
 const allowedOrigins = [
   'https://mini-blog-frontend-dvnj.vercel.app',
   'https://mini-blog-frontend-dvnj-jyumoxyh0-pappu-thakurs-projects.vercel.app',
   'https://mini-blog-frontend-dvnj-pappu-thakurs-projects.vercel.app',
 ];
 
-// ✅ CORS config
+
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true); // ✅ allow
-    } else {
-      console.log(`❌ Blocked by CORS: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    origin: allowedOrigins,
+    credentials: true,
 }));
 
-// ✅ Middleware to parse JSON
+app.options('*', cors())
 app.use(express.json());
 
 // ✅ Define API routes
@@ -44,10 +36,10 @@ router.post('/admin/posts', createPost);
 router.put('/admin/posts/:id', updatePost);
 router.delete('/admin/posts/:id', deletePost);
 
-// ✅ Register router
+
 app.use(router);
 
-// ✅ Dynamic port for Render
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
