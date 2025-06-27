@@ -6,23 +6,6 @@ import { getPosts, createPost, updatePost, deletePost } from './controllers/post
 
 
 
-
-
-
-
-
-
-dotenv.config();
-
-const app = express();
-
-
-app.use(cors({
-    origin: '*', // Allow all origins
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-}))
-
-
 const router = express.Router();
 
 router.get('/admin/posts', getPosts);
@@ -32,6 +15,15 @@ router.delete('/admin/posts/:id', deletePost);
 
 
 
+
+dotenv.config();
+
+const app = express();
+
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: ['*'],
+}));
 
 const PORT = process.env.PORT;
 console.log(PORT);
