@@ -20,17 +20,13 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = ['https://mini-blog-frontend-dvnj.vercel.app', 'http://localhost:3000', 'https://miniblogfrontend.vercel.app'];
-    app.use(cors({
-      origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-          const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-          return callback(new Error(msg), false);
-        }
-        return callback(null, true);
-      }
-    }));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "https://mini-blog-frontend-dvnj.vercel.app");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 
 const PORT = process.env.PORT;
 console.log(PORT);
