@@ -6,12 +6,8 @@ import { getPosts, createPost, updatePost, deletePost } from './controllers/post
 
 
 
-const router = express.Router();
 
-router.get('/admin/posts', getPosts);
-router.post('/admin/posts', createPost);
-router.put('/admin/posts/:id', updatePost);
-router.delete('/admin/posts/:id', deletePost);
+
 
 
 
@@ -20,11 +16,20 @@ dotenv.config();
 
 const app = express();
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://mini-blog-frontend-dvnj.vercel.app");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
+app.use(cors({
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+}))
+
+
+const router = express.Router();
+
+router.get('/admin/posts', getPosts);
+router.post('/admin/posts', createPost);
+router.put('/admin/posts/:id', updatePost);
+router.delete('/admin/posts/:id', deletePost);
+
 
 
 
