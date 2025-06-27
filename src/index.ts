@@ -21,7 +21,8 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'https://mini-blog-frontend-dvnj.vercel.app',
+    origin: ['https://mini-blog-frontend-dvnj.vercel.app','https://mini-blog-frontend-dvnj-jyumoxyh0-pappu-thakurs-projects.vercel.app/'],
+    credentials: true,
     methods: ['*'],
 }));
 
