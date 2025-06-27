@@ -7,6 +7,11 @@ dotenv.config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  console.log('Request Origin:', req.headers.origin);
+  next();
+});
+
 const allowedOrigins = [
   'https://mini-blog-frontend-dvnj.vercel.app',
   'https://mini-blog-frontend-dvnj-jyumoxyh0-pappu-thakurs-projects.vercel.app'
