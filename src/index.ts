@@ -1,20 +1,7 @@
 import express from 'express';
-
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { getPosts, createPost, updatePost, deletePost } from './controllers/posts.js';
-
-
-
-const router = express.Router();
-
-router.get('/admin/posts', getPosts);
-router.post('/admin/posts', createPost);
-router.put('/admin/posts/:id', updatePost);
-router.delete('/admin/posts/:id', deletePost);
-
-
-
 
 dotenv.config();
 
@@ -37,12 +24,21 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
 
-const PORT = process.env.PORT||5000;
-console.log(PORT);
-
 app.use(express.json());
+
+
+const router = express.Router();
+
+router.get('/admin/posts', getPosts);
+router.post('/admin/posts', createPost);
+router.put('/admin/posts/:id', updatePost);
+router.delete('/admin/posts/:id', deletePost);
+
 app.use(router);
 
-app.listen(PORT, ()=>{
-    console.log(`Server is running on port ${PORT}`);
-})
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
