@@ -14,7 +14,8 @@ app.use((req, res, next) => {
 
 const allowedOrigins = [
   'https://mini-blog-frontend-dvnj.vercel.app/',
-  'https://mini-blog-frontend-dvnj-jyumoxyh0-pappu-thakurs-projects.vercel.app/'
+  'https://mini-blog-frontend-dvnj-jyumoxyh0-pappu-thakurs-projects.vercel.app/',
+  'https://mini-blog-frontend-dvnj-pappu-thakurs-projects.vercel.app/'
 ];
 
 app.use(cors({
